@@ -1,10 +1,18 @@
-const loadPlants=(id)=>{
+const loadPlants=()=>{
     const url=`https://openapi.programming-hero.com/api/plants`
     fetch(url)
     .then((res)=>res.json())
     .then((data)=>{
         displayPlants(data.plants)
     })
+}
+const loadPlantDetail=(id)=>{
+  const url=`https://openapi.programming-hero.com/api/plant/${id}`
+  fetch(url)
+  .then((res)=>res.json())
+  .then((data)=>{
+ displayPlantDetails(data.plants);
+  })
 }
 
 const displayPlants=(plants)=>{
@@ -21,7 +29,7 @@ const displayPlants=(plants)=>{
   </div>
 
   <div class="tree-name mt-3">
-    <h1 class="text-normal text-black font-semibold">${plant.name}</h1>
+    <h1 onclick="loadPlantDetail(${plant.id})" class="text-normal text-black font-semibold cursor-pointer">${plant.name}</h1>
   </div>
 
   <div class="paragraph-container text-sm text-[#1F2937] mt-1">
@@ -51,3 +59,26 @@ const displayPlants=(plants)=>{
 }
 loadPlants
 ();
+
+ const displayPlantDetails=(plant)=>{
+  const detailsBox=document.getElementById("plant-details-container")
+  detailsBox.innerHTML=`
+<div>
+  <img src="${plant.image}" alt="">
+</div>
+
+<div>
+  <h1 class="font-bold text-xl">${plant.name}</h1>
+</div>
+<div>
+  <p>Category: ${plant.category}</p>
+</div>
+<div>
+  <p>${plant.description}</p>
+</div>
+<div>
+  <p>Price: <i class="fa-solid fa-bangladeshi-taka-sign"></i>${plant.price}</p>
+</div>
+  `
+  document.getElementById("plant_modal").showModal();
+ }
