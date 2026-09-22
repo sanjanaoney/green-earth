@@ -102,29 +102,24 @@
     Choose Your Trees
   </h1>
 
-  <div class="flex flex-col lg:flex-row gap-6">
+  <div class="flex flex-col lg:flex-row items-start gap-6">
 
     <!-- categories -->
-    <div class="p-5 w-full lg:w-48 shrink-0">
+    <div class="p-5 w-full lg:w-56 shrink-0">
 
       <h1 class="text-black text-xl font-bold">
         Categories
       </h1>
 
 <div>
-  <button  
-    id="all-trees-btn" 
-    onclick="loadPlants()" 
-    class="category-btn btn justify-start btn-block bg-[#15803D] text-white border-none mt-2"> 
-    All Trees 
-  </button> 
+<button id="all-trees-btn" onclick="loadPlants()" class="category-btn btn btn-block justify-start text-left text-sm !bg-transparent hover:!bg-transparent border-none mt-2 text-[#1F2937] hover:text-[#15803D]">All Trees</button>
 </div> 
  
 <div id="category-container" class="flex flex-col gap-2 mt-2">
 </div>
 
-      <div id="category-container" class="flex flex-col gap-2 mt-2">
-      </div>
+      <!-- <div id="category-container" class="flex flex-col gap-2 mt-2">
+      </div> -->
 
     </div>
 
@@ -132,7 +127,7 @@
     <!-- plant cards -->
     <div 
       id="card-container"
-      class="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
     </div>
 
 
