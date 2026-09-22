@@ -96,21 +96,65 @@
 <!-- banner section ends here -->
 
 
+<section class="w-11/12 mx-auto mt-20">
+
+  <h1 class="text-black text-2xl font-bold text-center mb-6">
+    Choose Your Trees
+  </h1>
+
+  <div class="flex flex-col lg:flex-row gap-6">
+
+    <!-- categories -->
+    <div class="p-5 w-full lg:w-48 shrink-0">
+
+      <h1 class="text-black text-xl font-bold">
+        Categories
+      </h1>
+
+<div>
+  <button  
+    id="all-trees-btn" 
+    onclick="loadPlants()" 
+    class="category-btn btn justify-start btn-block bg-[#15803D] text-white border-none mt-2"> 
+    All Trees 
+  </button> 
+</div> 
+ 
+<div id="category-container" class="flex flex-col gap-2 mt-2">
+</div>
+
+      <div id="category-container" class="flex flex-col gap-2 mt-2">
+      </div>
+
+    </div>
 
 
-<!-- plants card part starts here -->
-<!-- <section id="card-container" class="  grid grid-cols-1 md:grid-cols-3 w-11/12 md:w-8/12 gap-6 mx-auto mt-6 ">
- <h1 class="text-black text-xl font-bold">Choose Your Trees</h1>
-</section> -->
+    <!-- plant cards -->
+    <div 
+      id="card-container"
+      class="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    </div>
 
-<section class="w-11/12 md:w-8/12 mx-auto ">
-  <h1 class="text-black text-2xl font-bold text-center mb-6 mt-20">Choose Your Trees</h1>
-  
-  <div id="card-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <!-- cart -->
+    <div class="p-5 w-full lg:w-48 shrink-0">
+
+      <h1 class="text-black text-xl font-bold">
+        Your Cart
+      </h1>
+
+      <div id="cart-container" class="mt-2">
+      </div>
+
+      <p class="mt-2 font-semibold">
+        Total: <span id="cart-total">0</span>
+      </p>
+
+    </div>
+
   </div>
-</section>
-<!-- plants card part ends here -->
 
+</section>
 
 
 
@@ -201,16 +245,6 @@
     </div>
   </div>
 </dialog>
-
-
-
-
-  
-  
-
-
-
-
 
 <script src="./script/index.js"></script>    
 </body>

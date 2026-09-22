@@ -1,11 +1,43 @@
-const loadPlants=()=>{
-    const url=`https://openapi.programming-hero.com/api/plants`
-    fetch(url)
-    .then((res)=>res.json())
-    .then((data)=>{
-        displayPlants(data.plants)
-    })
-}
+// const removeActive=()=>{
+//   const allTreesButton=document.querySelectorAll(".category-btn")
+//   allTreesButton.forEach(btn=> btn.classList.remove("active"))
+// }
+const removeActive = () => {
+  const allCategoryButtons = document.querySelectorAll(".category-btn");
+
+  allCategoryButtons.forEach((btn) => {
+    btn.classList.remove("bg-[#15803D]", "text-white");
+  });
+};
+
+
+// const loadPlants=()=>{
+//   removeActive();
+//   document.getElementById("all-trees-btn").classList.add("active")
+//     const url=`https://openapi.programming-hero.com/api/plants`
+//     fetch(url)
+//     .then((res)=>res.json())
+//     .then((data)=>{
+//         displayPlants(data.plants)
+//     })
+// }
+
+const loadPlants = () => {
+  removeActive();
+
+  document
+    .getElementById("all-trees-btn")
+    .classList.add("bg-[#15803D]", "text-white");
+
+  const url = `https://openapi.programming-hero.com/api/plants`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      displayPlants(data.plants);
+    });
+};
+
 const loadPlantDetail=(id)=>{
   const url=`https://openapi.programming-hero.com/api/plant/${id}`
   fetch(url)
@@ -82,3 +114,48 @@ loadPlants
   `
   document.getElementById("plant_modal").showModal();
  }
+ const loadCategories=()=>{
+  const url=`https://openapi.programming-hero.com/api/categories`
+  fetch(url)
+  .then((res)=>res.json())
+  .then((data)=>{
+    displayCategories(data.categories);
+  })
+ }
+
+const displayCategories = (categories) => {
+  const categoryContainer =
+    document.getElementById("category-container");
+
+  categoryContainer.innerHTML = "";
+
+  categories.forEach((category) => {
+    const button = document.createElement("button");
+
+    button.innerText = category.category_name;
+
+    button.className = "category-btn text-left text-black";
+
+    button.onclick = () => {
+      removeActive();
+
+      button.classList.add("bg-[#15803D]", "text-white");
+
+      loadCategory(category.id);
+    };
+
+    categoryContainer.append(button);
+  });
+};
+const loadCategory = (id) => {
+  const url =
+    `https://openapi.programming-hero.com/api/category/${id}`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      displayPlants(data.plants);
+    });
+};
+loadPlants();
+loadCategories();
