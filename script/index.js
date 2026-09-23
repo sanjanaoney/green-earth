@@ -7,8 +7,31 @@ const removeActive = () => {
     btn.classList.add("!bg-transparent", "hover:!bg-transparent", "text-[#1F2937]", "hover:text-[#15803D]");
   });
 };
+const removeFromCart = (id) => {
+  const existingPlant = cart.find((item) => item.id === id);
+    if (existingPlant.quantity > 1) {
+    existingPlant.quantity -= 1;
+  } 
+  else {
+    cart = cart.filter((plant) => plant.id !== id);
+  }
+  displayCart();
+  updateTotal();
+};
+
+const manageSpinner=(status)=>{
+  if(status==true){
+    document.getElementById("spinner").classList.remove("hidden")
+    document.getElementById("card-container").classList.add("hidden")
+  }
+  else {
+    document.getElementById("spinner").classList.add("hidden")
+    document.getElementById("card-container").classList.remove("hidden")
+  }
+}
 
 const loadPlants = () => {
+    manageSpinner(true);
   removeActive();
   const allTreesBtn = document.getElementById("all-trees-btn");
   allTreesBtn.classList.remove("!bg-transparent", "hover:!bg-transparent", "text-[#1F2937]", "hover:text-[#15803D]");
@@ -70,6 +93,7 @@ const displayPlants = (plants) => {
         `;
     cardContainer.append(card);
   });
+    manageSpinner(false);
 };
 
 const displayPlantDetails = (plant) => {
@@ -125,6 +149,7 @@ const displayCategories = (categories) => {
 };
 
 const loadCategory = (id) => {
+    manageSpinner(true);
   const url = `https://openapi.programming-hero.com/api/category/${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -168,7 +193,7 @@ const displayCart=()=>{
   </p>
   </div>
   
-     <button class="text-[#FF0000] text-xl">
+     <button onclick="removeFromCart(${plant.id})" class="text-[#FF0000] text-xl">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
   
