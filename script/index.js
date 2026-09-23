@@ -1,3 +1,4 @@
+let cart=[];
 const removeActive = () => {
   const allCategoryButtons = document.querySelectorAll(".category-btn");
   allCategoryButtons.forEach((btn) => {
@@ -60,7 +61,7 @@ const displayPlants = (plants) => {
   </div>
 
   <div class="mt-3">
-    <button class="btn text-white bg-[#15803D] rounded-3xl hover:bg-[#F97316] border-none shadow-none w-full">
+    <button onclick="addToCart(${plant.id})" class="btn text-white bg-[#15803D] rounded-3xl hover:bg-[#F97316] border-none shadow-none w-full">
       Add to Cart
     </button>
   </div>
@@ -131,6 +132,56 @@ const loadCategory = (id) => {
       displayPlants(data.plants);
     });
 };
-
 loadPlants();
 loadCategories();
+const addToCart=(id)=>{
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+  fetch(url)
+  .then((res)=>res.json())
+  .then((data)=>{
+   const plant=data.plants;
+   const existingPlant= cart.find((item)=>item.id===plant.id);
+   if(existingPlant){
+    existingPlant.quantity+=1;
+   }
+   else{
+    cart.push({
+      ...plant,
+      quantity:1
+    });
+   }
+   displayCart();
+   updateTotal();
+  });
+}
+const displayCart=()=>{
+  const cartContainer=document.getElementById("cart-container");
+  cartContainer.innerHTML="";
+  cart.forEach((plant)=>{
+  const cartItem=document.createElement("div");
+  cartItem.innerHTML=`
+  <div class="bg-[#DCFCE7] rounded-lg p-3 mb-2 flex justify-between items-center">
+  <div>
+  <h1 class="font-semibold text-sm text-[#1F2937]">${plant.name}</h1>
+  <p class="text-sm text-black">
+   <i class="fa-solid fa-bangladeshi-taka-sign"></i>${plant.price}× ${plant.quantity}
+  </p>
+  </div>
+  
+     <button class="text-[#FF0000] text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+  
+  </div>
+  `;
+  cartContainer.append(cartItem);
+  })
+}
+
+const updateTotal=()=>{
+  let total=0;
+  cart.forEach((plant)=>{
+    total+=plant.price*plant.quantity;
+  });
+document.getElementById("cart-total").innerText=total;
+};
