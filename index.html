@@ -96,6 +96,8 @@
 <!-- banner section ends here -->
 
 
+
+<!-- choose your trees section starts here -->
 <section class="w-11/12 mx-auto mt-20">
 
   <h1 class="text-black text-2xl font-bold text-center mb-6">
@@ -117,18 +119,22 @@
  
 <div id="category-container" class="flex flex-col gap-2 mt-2">
 </div>
+</div>
+    
 
-      <!-- <div id="category-container" class="flex flex-col gap-2 mt-2">
-      </div> -->
-
-    </div>
-
+<div class="flex-1 w-full">
+       <!-- spinner added -->
+ <div id="spinner" class="hidden flex justify-center items-center py-10">
+<span class="loading loading-spinner loading-md"></span>
+ </div>
 
     <!-- plant cards -->
     <div 
       id="card-container"
-      class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
+      class=" grid grid-cols-1 md:grid-cols-3 gap-6">
+
     </div>
+</div>
 
 
     <!-- cart -->
@@ -153,7 +159,7 @@
   </div>
 
 </section>
-
+<!-- choose your trees section ends here -->
 
 
 <!--about campaign part starts here  -->
@@ -211,7 +217,7 @@
 <div class="bg-[#15803D] shadow-sm rounded-lg w-11/12 md:w-1/2 p-5">
   <input type="text" placeholder="Your Name" class=" input w-full mb-3 focus:outline-[#FACC15] focus:border-[#FACC15]">
   <input type="email" placeholder="Your Email Address" class="input w-full mb-3 focus:outline-[#FACC15] focus:border-[#FACC15]">
-  <input type="number" placeholder="Number of Trees" class="input w-full mb-3 focus:outline-[#FACC15] focus:border-[#FACC15]">
+  <input type="number" min="1" placeholder="Number of Trees" class="input w-full mb-3 focus:outline-[#FACC15] focus:border-[#FACC15]">
    <button class="btn text-[#15803D] bg-[#FACC15] rounded-3xl hover:bg-[#F97316] border-none shadow-none w-full">
                 Donate Now
             </button>
@@ -244,10 +250,7 @@
   </div>
 </dialog>
 
-<!-- spinner added -->
- <div id="spinner" class="hidden flex justify-center items-center py-10">
-<span class="loading loading-ball loading-md"></span>
- </div>
+
 
 <script src="./script/index.js"></script>    
 </body>

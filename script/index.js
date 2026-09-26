@@ -20,7 +20,7 @@ const removeFromCart = (id) => {
 };
 
 const manageSpinner=(status)=>{
-  if(status==true){
+  if(status===true){
     document.getElementById("spinner").classList.remove("hidden")
     document.getElementById("card-container").classList.add("hidden")
   }
