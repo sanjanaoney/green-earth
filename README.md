@@ -1,16 +1,16 @@
 # Green Earth
 
 A tree plantation campaign website built for Programming Hero's Green Earth assignment (006). Visitors can browse trees by category, check out details for a specific tree, add trees to a cart, and see a running total. All data comes from the Programming Hero Plants API.
-This is a learning project which follows the assignment brief and guidance along the way.
+This is a learning project developed while practicing JavaScript, DOM manipulation, API integration, and responsive web design.
 
 Live site: https://green-earth-09fad5.netlify.app/
 
 ## APIs used
 
-- All plants: `https://openapi.programming-hero.com/api/plants`
-- Categories: `https://openapi.programming-hero.com/api/categories`
-- Plants by category: `https://openapi.programming-hero.com/api/category/:id`
-- Single plant details: `https://openapi.programming-hero.com/api/plant/:id`
+- All plants: `https://openapi.programming-hero.com/api/green-earth/plants`
+- Categories: `https://openapi.programming-hero.com/api/green-earth/categories`
+- Plants by category: `https://openapi.programming-hero.com/api/green-earth/categories/:id`
+- Single plant details: `https://openapi.programming-hero.com/api/green-earth/plants/:id`
 
 ## Features
 
@@ -43,6 +43,10 @@ Pulls values out of an object or array directly into variables instead of access
 
 **Template literals**
 Strings written with backticks that let us insert variables directly using `${}`, instead of joining strings with `+`. They also support multiple lines, which is why they're used to build the plant cards, cart items, and modal content in this project. It is much easier to read than concatenation.
+
+## Image Credits
+
+Plant images are sourced from Wikimedia Commons and other publicly available image resources. Attribution and licensing information for the Wikimedia Commons images is available in IMAGE_CREDITS.json.
 
 ## Acknowledgements
 
