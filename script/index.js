@@ -37,20 +37,25 @@ const loadPlants = () => {
   allTreesBtn.classList.remove("!bg-transparent", "hover:!bg-transparent", "text-[#1F2937]", "hover:text-[#15803D]");
   allTreesBtn.classList.add("bg-[#15803D]", "text-white");
 
-  const url = `https://openapi.programming-hero.com/api/plants`;
+const url = `https://openapi.programming-hero.com/api/green-earth/plants`;
   fetch(url)
     .then((res) => res.json())
-    .then((data) => {
-      displayPlants(data.plants);
-    });
+    // .then((data) => {
+    //   displayPlants(data.plants);
+    // });
+.then((data) => {
+  console.log("API Response:", data);
+  console.log("First Plant:", data[0]);
+  displayPlants(data);
+});
 };
 
 const loadPlantDetail = (id) => {
-  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+  const url = `https://openapi.programming-hero.com/api/green-earth/plants/${id}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      displayPlantDetails(data.plants);
+      displayPlantDetails(data);
     });
 };
 
@@ -120,12 +125,16 @@ const displayPlantDetails = (plant) => {
 };
 
 const loadCategories = () => {
-  const url = `https://openapi.programming-hero.com/api/categories`;
+ const url = `https://openapi.programming-hero.com/api/green-earth/categories`;
   fetch(url)
     .then((res) => res.json())
+    // .then((data) => {
+    //   displayCategories(data.categories);
+    // });
     .then((data) => {
-      displayCategories(data.categories);
-    });
+  console.log("Categories:", data);
+  displayCategories(data);
+});
 };
 
 const displayCategories = (categories) => {
@@ -141,30 +150,35 @@ const displayCategories = (categories) => {
       removeActive();
       button.classList.remove("!bg-transparent", "hover:!bg-transparent", "text-[#1F2937]", "hover:text-[#15803D]");
       button.classList.add("bg-[#15803D]", "text-white");
-      loadCategory(category.id);
+      // loadCategory(category.id);
+      loadCategory(category.category_name);
     };
 
     categoryContainer.append(button);
   });
 };
 
-const loadCategory = (id) => {
-    manageSpinner(true);
-  const url = `https://openapi.programming-hero.com/api/category/${id}`;
+const loadCategory = (name) => {
+  manageSpinner(true);
+
+  const url = `https://openapi.programming-hero.com/api/green-earth/plants?category=${encodeURIComponent(name)}`;
+
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      displayPlants(data.plants);
-    });
+  displayPlants(data);
+});
 };
+
 loadPlants();
 loadCategories();
 const addToCart=(id)=>{
-    const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+    // const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+    const url = `https://openapi.programming-hero.com/api/green-earth/plants/${id}`;
   fetch(url)
   .then((res)=>res.json())
   .then((data)=>{
-   const plant=data.plants;
+   const plant=data;
    const existingPlant= cart.find((item)=>item.id===plant.id);
    if(existingPlant){
     existingPlant.quantity+=1;
